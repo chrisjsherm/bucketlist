@@ -9,7 +9,7 @@
 <form #myForm="ngForm" (ngSubmit)="myForm.form.valid && addTodo(newTodo)">
     <div class="row">
         <div class="column small-6">
-            <input class="new-todo" name="title" required placeholder="Add something here" autofocus [(ngModel)]="newTodo.title">
+            <input class="new-todo" name="title" type="text" required placeholder="Add something here" autofocus [(ngModel)]="newTodo.title">
         </div>
 
         <div class="column small-4">

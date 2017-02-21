@@ -13,7 +13,7 @@ export class TodoDataService {
     constructor() {
         this.addTodo(new Todo(
             {
-                id: 1,
+                id: 0,
                 title: 'CLDTX-12314',
                 complete: false,
             }
