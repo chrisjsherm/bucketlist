@@ -10,28 +10,39 @@ import {TodoDataService} from './todo-data.service';
 })
 export class AppComponent {
 
+    incompleteTodoCount: number;
     newTodo: Todo = new Todo();
 
     constructor(private todoDataService: TodoDataService) {
+        this.getCountOfIncompleteTodos(this.todos);
     }
 
     addTodo() {
         // Save the existing item.
         this.todoDataService.addTodo(this.newTodo);
+        this.getCountOfIncompleteTodos(this.todos);
 
         // Initialize a new object so we can add more items.
         this.newTodo = new Todo();
     }
 
+    getCountOfIncompleteTodos(todos: Todo[]) {
+        this.incompleteTodoCount = 
+            todos.filter(todo => !todo.complete).length;
+    }
+
     get todos() {
         return this.todoDataService.getAllTodos();
+        
     }
 
     removeTodo(todo) {
         this.todoDataService.deleteTodoById(todo.id);
+        this.getCountOfIncompleteTodos(this.todos);
     }
 
     toggleTodoComplete(todo) {
         this.todoDataService.toggleTodoComplete(todo);
+        this.getCountOfIncompleteTodos(this.todos);
     }
 }
