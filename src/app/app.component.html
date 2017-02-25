@@ -41,18 +41,25 @@
     <div class="column">
         <footer class="footer">
             <span class="todo-count">
-                <strong [innerHTML]="incompleteTodoCount">                    
-                </strong>
 
-                <span [ngPlural]="incompleteTodoCount === 1">
-                    <template ngPluralCase="=true">
-                        item
+                <span [ngPlural]="incompleteTodoCount">                   
+                    <template ngPluralCase="=0">
+                        You're all finished!
                     </template>
 
-                    <template ngPluralCase="=false">
-                        items
+                    <template ngPluralCase="one">
+                        Only one thing left to do&hellip;
                     </template>
-                </span> left
+
+                    <template ngPluralCase="=2">
+                        Just couple things left to do.
+                    </template>
+
+                    <template ngPluralCase="other">
+                        {{incompleteTodoCount}} things left to do.
+                    </template>
+                </span>
+                
             </span>
         </footer>
     </div>

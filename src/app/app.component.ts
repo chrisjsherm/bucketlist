@@ -15,11 +15,17 @@ export class AppComponent {
 
     constructor(private todoDataService: TodoDataService) {
         this.getCountOfIncompleteTodos(this.todos);
+
+        this.addTodo(new Todo(
+            {
+                title: 'CLDTX-10975',
+            }
+        ));
     }
 
-    addTodo() {
+    addTodo(newTodo: Todo) {
         // Save the existing item.
-        this.todoDataService.addTodo(this.newTodo);
+        this.todoDataService.addTodo(newTodo);
         this.getCountOfIncompleteTodos(this.todos);
 
         // Initialize a new object so we can add more items.

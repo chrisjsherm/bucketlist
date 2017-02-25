@@ -11,13 +11,6 @@ export class TodoDataService {
     todos: Todo[] = [];
 
     constructor() {
-        this.addTodo(new Todo(
-            {
-                id: 0,
-                title: 'CLDTX-10975',
-                complete: false,
-            }
-        ))
     }
 
     // Simulate POST /todos.
