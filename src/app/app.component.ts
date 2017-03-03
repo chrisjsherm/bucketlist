@@ -14,41 +14,29 @@ export class AppComponent {
     newTodo: Todo = new Todo();
 
     constructor(private todoDataService: TodoDataService) {
-        this.getCountOfIncompleteTodos(this.todos);
-
-        this.addTodo(new Todo(
-            {
-                title: 'CLDTX-10975',
-            }
-        ));
+        this.todos.subscribe(result => {
+            this.incompleteTodoCount = result
+                .filter(todo => !todo.complete).length;
+        })
     }
 
     addTodo(newTodo: Todo) {
         // Save the existing item.
         this.todoDataService.addTodo(newTodo);
-        this.getCountOfIncompleteTodos(this.todos);
 
         // Initialize a new object so we can add more items.
         this.newTodo = new Todo();
     }
 
-    getCountOfIncompleteTodos(todos: Todo[]) {
-        this.incompleteTodoCount = 
-            todos.filter(todo => !todo.complete).length;
-    }
-
     get todos() {
-        return this.todoDataService.getAllTodos();
-        
+        return this.todoDataService.getAllTodos();        
     }
 
     removeTodo(todo) {
-        this.todoDataService.deleteTodoById(todo.id);
-        this.getCountOfIncompleteTodos(this.todos);
+        this.todoDataService.deleteTodoById(todo.$key);
     }
 
     toggleTodoComplete(todo) {
-        this.todoDataService.toggleTodoComplete(todo);
-        this.getCountOfIncompleteTodos(this.todos);
+        this.todoDataService.toggleTodoComplete(todo.$key, !todo.complete);
     }
 }
