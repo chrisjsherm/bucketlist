@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="18px" height="18px" viewBox="51 51 18 18" enable-background="new 51 51 18 18" xml:space="preserve">
+<title>google_buttn</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1">
+	<g id="Artboard-1" transform="translate(-332.000000, -639.000000)">
+		<g id="google_buttn" transform="translate(332.000000, 639.000000)">
+			<g id="logo_googleg_48dp">
+				<path id="Shape" fill="#4285F4" d="M68.64,60.205c0-0.638-0.057-1.252-0.163-1.841H60v3.481h4.844
+					c-0.209,1.125-0.843,2.078-1.796,2.717v2.258h2.908C67.658,65.253,68.64,62.945,68.64,60.205L68.64,60.205z"/>
+				<path id="Shape_1_" fill="#34A853" d="M60,69c2.43,0,4.467-0.806,5.956-2.181l-2.908-2.258c-0.806,0.54-1.837,0.859-3.048,0.859
+					c-2.344,0-4.328-1.584-5.036-3.711h-3.007v2.332C53.438,66.983,56.482,69,60,69L60,69z"/>
+				<path id="Shape_2_" fill="#FBBC05" d="M54.964,61.71c-0.18-0.54-0.282-1.116-0.282-1.71c0-0.593,0.103-1.17,0.282-1.71v-2.332
+					h-3.007C51.348,57.173,51,58.548,51,60s0.348,2.827,0.957,4.042L54.964,61.71L54.964,61.71z"/>
+				<path id="Shape_3_" fill="#EA4335" d="M60,54.58c1.321,0,2.508,0.454,3.44,1.346l2.581-2.581C64.463,51.892,62.426,51,60,51
+					c-3.518,0-6.562,2.017-8.043,4.958l3.007,2.332C55.672,56.163,57.656,54.58,60,54.58L60,54.58z"/>
+				<path id="Shape_4_" fill="none" d="M51,51h18v18H51V51z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

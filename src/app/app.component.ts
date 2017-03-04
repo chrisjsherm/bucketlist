@@ -19,8 +19,6 @@ export class AppComponent {
             if (user) {
                 // user logged in
                 this.user = user;
-
-                this.router.navigate(['/']);
             }
             else {
                 // user not logged in
@@ -38,5 +36,13 @@ export class AppComponent {
             }
             document.body.scrollTop = 0;
         });
+    }
+
+    login() {
+        this.af.auth.login();
+    }
+
+    logout() {
+        this.af.auth.logout();
     }
 }
