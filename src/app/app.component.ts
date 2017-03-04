@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AngularFire, AuthProviders } from 'angularfire2';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,25 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
 
-    constructor(private router: Router) { }
+    user = {};
+
+    constructor(
+        public af: AngularFire,
+        private router: Router
+    ) {
+        this.af.auth.subscribe(user => {
+            if (user) {
+                // user logged in
+                this.user = user;
+
+                this.router.navigate(['/']);
+            }
+            else {
+                // user not logged in
+                this.user = {};
+            }
+        });
+    }
 
     ngOnInit() {
 

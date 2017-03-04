@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -9,21 +8,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-    constructor(public af: AngularFire, private router: Router,) { }
+    constructor(
+        private af: AngularFire,
+    ) { }
 
     ngOnInit() {
     }
 
     login() {
-        this.af.auth.login()
-        .then(this.redirectToTodoList);
+        this.af.auth.login();
     }
 
     logout() {
         this.af.auth.logout();
-    }
-
-    redirectToTodoList() {
-        this.router.navigate(['/']);
     }
 }
