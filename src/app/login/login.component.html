@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="column small-12">
+        <p>
+            {{ (af.auth | async)?.uid }}
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column small 6">
+        <button type="button" class="button" (click)="login()">
+            Login
+        </button>
+    </div>
+
+    <div class="column small-6">
+        <button type="button" class="button" (click)="logout()">
+            Logout
+        </button>
+    </div>
+</div>
