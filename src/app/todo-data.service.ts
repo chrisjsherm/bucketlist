@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
+import { UserAccount } from './user-account';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
@@ -7,10 +8,18 @@ export class TodoDataService {
 
     angularFire: AngularFire;
     todos: FirebaseListObservable<Todo[]>;
+    userAccount: UserAccount = new UserAccount();
 
     constructor(angularFire: AngularFire) {
         this.angularFire = angularFire;
         this.todos = angularFire.database.list('/api/todos');
+
+        this.angularFire.auth.subscribe(user => {
+            if (user) {
+                // user logged in
+                this.userAccount.uid = user.uid;
+            }
+        });
     }
 
     // POST /todos.
@@ -42,7 +51,18 @@ export class TodoDataService {
 
     // GET /todos.
     getAllTodos(): FirebaseListObservable<Todo[]> {
+
+        if (this.userAccount.uid === null) {
+            return this.todos;
+        }
+            
         return this.todos;
+        // this.angularFire.database.object(
+        //     '/api/user-accounts/' + 
+        //     this.userAccount.uid)
+        // .subscribe(user => {
+        //     return [];
+        // });
     }
 
     // GET /todos/:id.

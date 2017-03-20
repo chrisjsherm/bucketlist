@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AngularFire, AuthProviders } from 'angularfire2';
+import { Todo } from './todo';
 
 @Component({
     selector: 'app-root',
@@ -19,6 +20,10 @@ export class AppComponent {
             if (user) {
                 // user logged in
                 this.user = user;
+                var ref = this.af.database.object(
+                    '/api/user-accounts/' +
+                    user.uid
+                ).set({'hello': 1});
             }
             else {
                 // user not logged in
@@ -39,7 +44,7 @@ export class AppComponent {
     }
 
     login() {
-        this.af.auth.login();
+        this.af.auth.login()
     }
 
     logout() {
