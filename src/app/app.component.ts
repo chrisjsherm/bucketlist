@@ -14,33 +14,44 @@ import { TodoDataService } from './todo-data.service';
 export class AppComponent {
 
     user = {};
+    userAccount = new UserAccount();
 
     constructor(
         public af: AngularFire,
-        private router: Router,
-        private todoDataService: TodoDataService
+        private todoDataService: TodoDataService,
+        private router: Router
     ) {
-        this.af.auth.subscribe(user => {
-            if (user) {
-                // user logged in
-                this.user = user;
-                let defaultTodos = this.todoDataService.getAllTodos();
+        this.af.auth.subscribe(this.onFirebaseAuth);
+    }
 
-                let ref = this.af.database.object(
-                    '/api/user-accounts/' +
-                    user.uid
-                );
+    onFirebaseAuth = (firebaseAuth) => {
+        if (firebaseAuth) {
+            // user logged in
+            this.user = firebaseAuth;
 
-                // let defaultTodosArr = [];
-                // defaultTodos.forEach(todos => {
-                //     ref.set(todos);
-                // });
-            }
-            else {
-                // user not logged in
-                this.user = {};
-            }
-        });
+            this.af.database.object(
+                '/api/user-accounts/' +
+                firebaseAuth.uid
+            ).subscribe(this.initializeUserAccount);
+        }
+        else {
+            // user not logged in
+            this.user = {};
+        }
+    }
+
+    initializeUserAccount = (userAccount) => {
+        if (userAccount.todos) {
+            this.userAccount = userAccount;
+            return;
+        }
+
+        this.todoDataService.getAllTodos()
+            .subscribe(this.initializeUserWithDefaultTodos);
+    }
+
+    initializeUserWithDefaultTodos = (defaultTodos) => {
+        this.userAccount.todos = defaultTodos;
     }
 
     ngOnInit() {
