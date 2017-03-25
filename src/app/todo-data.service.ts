@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
 import { UserAccount } from './user-account';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import {
+    AngularFire,
+    FirebaseListObservable,
+    FirebaseObjectObservable
+} from 'angularfire2';
 
 @Injectable()
 export class TodoDataService {
@@ -55,7 +59,7 @@ export class TodoDataService {
         if (this.userAccount.uid === null) {
             return this.todos;
         }
-            
+
         return this.todos;
         // this.angularFire.database.object(
         //     '/api/user-accounts/' + 
@@ -73,8 +77,8 @@ export class TodoDataService {
     // Toggle todo complete.
     toggleTodoComplete(id: string, isComplete: boolean = true) {
         let todoToUpdate = this.getTodoById(id);
-        
-        todoToUpdate.update({complete: isComplete});
+
+        todoToUpdate.update({ complete: isComplete });
 
         return todoToUpdate;
     }
