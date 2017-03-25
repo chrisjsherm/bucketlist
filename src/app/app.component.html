@@ -1,27 +1,31 @@
-<div class="top-bar">
-    <div class="top-bar-left">
-        <ul class="menu" *ngIf="user.auth">
-            <li class="menu-text">
-                Welcome, {{user.auth.providerData[0].displayName}}
-            </li>
-        </ul>
-    </div>
+<div class="row">
+    <div class="column small-12">
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu" *ngIf="user.auth">
+                    <li class="menu-text">
+                        Welcome, {{user.auth.providerData[0].displayName}}
+                    </li>
+                </ul>
+            </div>
 
-    <div class="top-bar-right">
-        <ul class="menu" [ngSwitch]="!!user.auth">
-            <li *ngSwitchCase="true">
-                <button type="button" class="hollow button secondary" (click)="logout()">
-                    Logout
-                </button>
-            </li>
+            <div class="top-bar-right">
+                <ul class="menu" [ngSwitch]="!!user.auth">
+                    <li *ngSwitchCase="true">
+                        <button type="button" class="hollow button secondary" (click)="logout()">
+                            Logout
+                        </button>
+                    </li>
 
-            <li *ngSwitchCase="false">
-                <button type="button" class="hollow button secondary" (click)="login()">
-                    <img src="/assets/images/google.svg">
-                    Sign in with Google
-                </button>
-            </li>
-        </ul>
+                    <li *ngSwitchCase="false">
+                        <button type="button" class="hollow button secondary" (click)="login()">
+                            <img src="/assets/images/google.svg">
+                            Sign in with Google
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,16 +1,18 @@
-<div class="row">
-    <div class="column small-8">
-        <h1>
-            Tasks
-        </h1>
+<section *ngIf="userAccount.todos !== undefined"
+     class="content-group">
+    <div class="row">
+        <div class="column large-offset-3 large-4">
+            <h1>
+                Tasks
+            </h1>
+        </div>
+
+        <div class="column large-2 text-right">
+            <h2 [innerHTML]="incompleteTodoCount"></h2>
+        </div>
     </div>
 
-    <div class="column small-4 text-right">
-        <h2 [innerHTML]="incompleteTodoCount"></h2>
-    </div>
-</div>
-
-<form #myForm="ngForm" (ngSubmit)="myForm.form.valid && addTodo(newTodo)">
+    <!--<form #myForm="ngForm" (ngSubmit)="myForm.form.valid && addTodo(newTodo)">
     <div class="row">
         <div class="column medium-6 small-12">
             <input class="new-todo" name="title" type="text" required placeholder="Add something here" autofocus [(ngModel)]="newTodo.title">
@@ -22,27 +24,58 @@
             </button>
         </div>
     </div>
-</form>
+    </form>-->
 
-<div class="row" *ngFor="let todo of todos | async">
-    <div class="column small-1">
-        <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+    <div class="row">
+        <div class="column large-offset-3 large-6">
+            <table class="hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Activity
+                        </th>
+
+                        <th>
+                            Completed
+                        </th>
+
+                        <!--<th></th>-->
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let todo of userAccount.todos; let i = index" (click)="toggleTodoComplete(todo, i)">
+                        <td>
+                            <span [class.completed]="todo.complete" [innerHTML]="todo.title">
+                        </span>
+                        </td>
+
+                        <td class="text-center">
+                            <input class="toggle" type="checkbox" [checked]="todo.complete">
+                        </td>
+
+                        <!--<td>
+                        <button type="button" class="destroy" (click)="removeTodo(todo)">
+                            &#10006;
+                        </button>
+                    </td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+</section>
 
-    <div class="column small-10">
-        <span [class.completed]="todo.complete" [innerHTML]="todo.title">
-        </span>
-    </div>
-
-    <div class="column small-1 text-right">
-        <button type="button" class="destroy" (click)="removeTodo(todo)">
-            &#10006;
-        </button>
+<div class="row content-group" *ngIf="userAccount.todos === undefined">
+    <div class="column large-offset-3 large-6 small-12">
+        <div class="callout primary text-center">
+            <h5>Please sign in to get started</h5>
+        </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="column">
+    <div class="column large-offset-3 large-6">
         <footer class="footer">
 
             <span *ngIf="incompleteTodoCount" [ngPlural]="incompleteTodoCount">                   
@@ -62,7 +95,7 @@
                     {{incompleteTodoCount}} things left to do.
                 </template>
             </span>
-            
+
         </footer>
     </div>
 </div>
