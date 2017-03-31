@@ -12,13 +12,13 @@
             <div class="top-bar-right">
                 <ul class="menu" [ngSwitch]="!!user.auth">
                     <li *ngSwitchCase="true">
-                        <button type="button" class="hollow button secondary" (click)="logout()">
+                        <button type="button" class="hollow button white" (click)="logout()">
                             Logout
                         </button>
                     </li>
 
                     <li *ngSwitchCase="false">
-                        <button type="button" class="hollow button secondary" (click)="login()">
+                        <button type="button" class="hollow button white" (click)="login()">
                             <img src="/assets/images/google.svg">
                             Sign in with Google
                         </button>
@@ -29,4 +29,10 @@
     </div>
 </div>
 
-<router-outlet></router-outlet>
+<div class="row">
+    <div class="column small-12">
+        <section class="content-main">
+            <router-outlet></router-outlet>
+        </section>
+    </div>
+</div>
