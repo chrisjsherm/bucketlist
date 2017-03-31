@@ -12,7 +12,7 @@ import { AngularFire, AuthProviders } from 'angularfire2';
 export class AppComponent {
 
     // Public properties.
-    user = {};
+    user;
 
     // Constructors.
     constructor(
@@ -41,7 +41,7 @@ export class AppComponent {
         }
         else {
             // user not logged in
-            this.user = {};
+            this.user = undefined;
         }
     }
 

@@ -2,7 +2,7 @@
     <div class="column small-12">
         <div class="top-bar">
             <div class="top-bar-left">
-                <ul class="menu" *ngIf="user.auth">
+                <ul class="menu" *ngIf="user">
                     <li class="menu-text">
                         Welcome, {{user.auth.providerData[0].displayName}}
                     </li>
@@ -10,7 +10,7 @@
             </div>
 
             <div class="top-bar-right">
-                <ul class="menu" [ngSwitch]="!!user.auth">
+                <ul class="menu" [ngSwitch]="!!user">
                     <li *ngSwitchCase="true">
                         <button type="button" class="hollow button white" (click)="logout()">
                             Logout
